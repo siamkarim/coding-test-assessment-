@@ -2,6 +2,7 @@ from django.db import models
 from config.g_model import TimeStampMixin
 
 
+
 # Create your models here.
 class Variant(TimeStampMixin):
     title = models.CharField(max_length=40, unique=True)
@@ -12,7 +13,7 @@ class Variant(TimeStampMixin):
 class Product(TimeStampMixin):
     title = models.CharField(max_length=255)
     sku = models.SlugField(max_length=255, unique=True)
-    description = models.TextField()
+    description = models.TextField(max_length=255)
 
 
 class ProductImage(TimeStampMixin):
@@ -24,6 +25,7 @@ class ProductVariant(TimeStampMixin):
     variant_title = models.CharField(max_length=255)
     variant = models.ForeignKey(Variant, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+   
 
 
 class ProductVariantPrice(TimeStampMixin):
